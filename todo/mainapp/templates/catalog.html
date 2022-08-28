@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="catalog_all_head">Каталог</div>
+<div class="catalog_all">
+    <div class="catalog_all_col1">
+        <div class="catalog_all_category">
+            <ul>
+                <li><a class="catalog_all_category_main" href="">Все товары</a></li>
+                {% for category in categories %}
+                <li><a class="catalog_all_category_link" href="{{ category.url }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="catalog_line1">
+            <img src="{% static 'img/catalog_line.png' %}" height="1800">
+        </div>
+    </div>
+    <div class="catalog_all_col2">
+        {% for product in blouses %}
+        <div class="catalog_all_products">
+            <div class="catalog_all_product">
+                <img src="{{ product.image1.url }}" width="307" height="444">
+                <div class="catalog_all_product_descr">
+                    <div class="catalog_all_product_descr_text"><a class="catalog_all_product_descr_title" href="{{ product.get_absolute_url }}">{{ product.title }}</a><br>{{ product.price }}р.<br>Цвет</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for product in overalls %}
+        <div class="catalog_all_products">
+            <div class="catalog_all_product">
+                <img src="{{ product.image1.url }}" width="307" height="444">
+                <div class="catalog_all_product_descr">
+                    <div class="catalog_all_product_descr_text"><a class="catalog_all_product_descr_title" href="{{ product.get_absolute_url }}">{{ product.title }}</a><br>{{ product.price }}р.<br>Цвет</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for product in trousers %}
+        <div class="catalog_all_products">
+            <div class="catalog_all_product">
+                <img src="{{ product.image1.url }}" width="307" height="444">
+                <div class="catalog_all_product_descr">
+                    <div class="catalog_all_product_descr_text"><a class="catalog_all_product_descr_title" href="{{ product.get_absolute_url }}">{{ product.title }}</a><br>{{ product.price }}р.<br>Цвет</div>
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock content %}

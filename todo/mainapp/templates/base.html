@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <title>Moonpie</title>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css">
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <header class="header">
+                <img src="{% static 'img/logo.jpg' %}" width="100" height="100">
+                <nav class="nav">
+                    <ul class="topmenu">
+                        <li><a class="nav_link" href="{% url 'base' %}">Главная</a></li>
+                        <li><a class="down">О нас</a>
+                            <ul class="submenu">
+                                <li><a class="nav_link" href="{% url 'brand' %}">Бренд</a></li>
+                                <li><a class="nav_link" href="{% url 'fabrics' %}">Ткани</a></li>
+                                <li><a class="nav_link" href="{% url 'contacts' %}">Контакты</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="down">Каталог</a>
+                            <ul class="submenu">
+                                <li><a href="{% url 'catalog' %}">Все товары</a></li>
+                                {% for category in categories %}
+                                <li><a href="{{ category.url }}">{{ category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li><a class="nav_link" href="{% url 'how_to_order' %}">Как заказать</a></li>
+                        <li><a class="basket_pic" href="{% url 'cart' %}"><img src="{% static 'img/basket.png' %}" width="30" height="30"><span class="badge badge-pill badge-danger">{{ cart.products.count }}</span></a></li>
+                        <li class="for_user">
+                            {% if user.is_authenticated %}
+                                <h1> Добро пожаловать, {{ user }}</h1>
+                            {% else %}
+                                <form action="{% url 'login' %}">
+                                    <button class="btn btn-outline-dark" type="submit">
+                                        Авторизация
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            {% block content %}
+            <div class="first_block">
+                <img src="{% static 'img/first_block_pic.png' %}" width="100%">
+                <div class="first_block_text">Стильная и комфортная медицинская одежда</div>
+                <a class="first_block_but" href="">Перейти в каталог</a>
+            </div>
+            <p class="katalog2">Каталог</p>
+            <div class="second_block">
+                <div class="katalog">
+                    <div class="for_pics">
+                        <a href="catalog/trousers"><img class="block_2_pic_ten" src="{% static 'img/sec_block_trousers.png' %}" width="414" height="545"></a>
+                        <div class="second_block_text1">Брюки</div>
+                    </div>
+                    <div class="for_pics">
+                        <a href="catalog/blouse"><img class="block_2_pic_ten" src="{% static 'img/sec_block_blouse.png' %}" width="414" height="545"></a>
+                        <div class="second_block_text2">Блузы</div>
+                    </div>
+                    <div class="for_pics">
+                        <a href="catalog/overalls"><img class="block_2_pic_ten" src="{% static 'img/sec_block_overall.png' %}" width="414" height="545"></a>
+                        <div class="second_block_text3">Комбинезоны</div>
+                    </div>
+                </div>
+            </div>
+            <div class="third_block">
+                <img src="{% static 'img/moonpie_block_line.png' %}" width="100%">
+                <div class="third_block_text">Мы все очень разные, но нас объединяет одно - выбор профессии. И для каждой найдётся форма по душе, фигуре и по вкусу.</div>
+                <img class="otstup" src="{% static 'img/moonpie_block_line.png' %}" width="100%">
+            </div>
+            <div class="four_block_head">Почему вы выберете нас </div>
+            <div class="four_block">
+                <div class="col1">
+                    <img class="four_block_pic1" src="{% static 'img/four_block_pic1.png' %}" height="121" align="top">
+                    <p class="four_block_text1">Шьем по индивидуальным меркам </p>
+                    <img class="four_block_pic2" src="{% static 'img/four_block_pic2.png' %}" height="121" align="top">
+                    <p class="four_block_text2">Примерка перед покупкой</p>
+                </div>
+                <div class="col2">
+                    <img class="four_block_pic3" src="{% static 'img/four_block_pic3.png' %}" height="121">
+                    <p class="four_block_text3">Доставка по всей России</p>
+                    <img class="four_block_pic4" src="{% static 'img/four_block_pic4.png' %}" height="121">
+                    <p class="four_block_text4">Собственное производство</p>
+                </div>
+            </div>
+            <a class="link_more" href="#">Подробнее о нас</a>
+            {% endblock content %}
+            <footer class="footer">
+                <div class="footer_rules"> © 2022 Все права защищены</div>
+                <img class="footer_logo" src="{% static 'img/footer_logo.jpg' %}" width="250" height="250">
+                <div class="footer_buts">
+                    <a class="footer_buts_link" href="#"> Политика конфиденциальности</a>
+                    <a class="footer_buts_link" href="#">Пользовательское соглашение </a>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

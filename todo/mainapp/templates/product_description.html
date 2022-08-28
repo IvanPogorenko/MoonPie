@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="about_product_for_block">
+    <div class="about_product">
+        <div class="about_product_col1">
+            <div class="slider">
+                <div class="slides">
+                    <div id="slides_1" class="slide">
+                        <img src="{{ product.image1.url }}" width="507" height="726">
+                        <a class="slide_prev" href="#slides_4"></a>
+                        <a class="slide_next" href="#slides_2"></a>
+                    </div>
+                    <div id="slides_2" class="slide">
+                        <img src="{{ product.image2.url }}" width="507" height="726">
+                        <a class="slide_prev" href="#slides_1"></a>
+                        <a class="slide_next" href="#slides_3"></a>
+                    </div>
+                    <div id="slides_3" class="slide">
+                        <img src="{{ product.image3.url }}" width="507" height="726">
+                        <a class="slide_prev" href="#slides_2"></a>
+                        <a class="slide_next" href="#slides_4"></a>
+                    </div>
+                    <div id="slides_4" class="slide">
+                        <img src="{{ product.image4.url }}" width="507" height="726">
+                        <a class="slide_prev" href="#slides_3"></a>
+                        <a class="slide_next" href="#slides_1"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about_product_col2">
+            <div class="about_product_title">
+                <p1>{{ product.title }}<br><p2>{{ product.price }}р.</p2></p1>
+            </div>
+            <div class="about_product_choosing_blocks">
+                <div class="about_product_choosing_blocks_col1">
+                    <div class="about_product_choosing_block1">
+                        <div1>Цвет</div1>
+                        <div class="select">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <select name="color" required>
+                                    {% for color in combobox_colors %}
+                                    <option>{{ color }}</option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="about_product_choosing_block2">
+                        <div1>Размер</div1>
+                        <div class="select">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <select name="color" required>
+                                    {% for color in combobox_colors %}
+                                    <option>{{ color }}</option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="about_product_choosing_block2">
+                        <div1>Рост</div1>
+                        <div class="field">
+                            <form action="{% url 'cart' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="number" name="height">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="about_product_choosing_blocks_col2">
+                    <div class="about_product_sizing_blocks">
+                        <div class="about_product_sizing_blocks_col1">
+                            <p>Обхват бёдер<br>Обхват груди<br>Обхват талии</p>
+                        </div>
+                        <div class="about_product_sizing_blocks_col2">
+                            <div class="field">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="number" name="height">
+                                </form>
+                            </div>
+                            <div class="field">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="number" name="height">
+                                </form>
+                            </div>
+                            <div class="field">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="number" name="height">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="about_product_but" href="{% url 'add_to_cart' ct_model=ct_model slug=product.slug %}">Добавить в корзину</a>
+            <p class="about_product_descr">{{ product.description }}</p>
+        </div>
+    </div>
+</div>
+<div class="about_other">
+    <div class="about_other_block">
+        <div class="about_other_title">
+            <img src="{% static 'img/about_line.png' %}" width="633" height="110">
+            <div class="about_other_title_text">Смотрите также</div>
+        </div>
+        <div class="about_other_products">
+            <div>{{ product.category }}</div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="row">-->
+<!--    <div class="col-md-6">-->
+<!--        <img src="{{ product.image1.url }}" align="right" width="300" height="400">-->
+<!--    </div>-->
+<!--    <div class="col-md-6">-->
+<!--        <h3>{{ product.title }}</h3>-->
+<!--        <p>Цена: {{ product.price }} руб</p>-->
+<!--        <p>Описание: {{ product.description }} </p>-->
+<!--        <hr>-->
+<!--        <a href="{% url 'add_to_cart' ct_model=ct_model slug=product.slug %}"><button class="btn btn-danger">Добавить в корзину</button></a>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="select">
+    <form method="POST">
+        {% csrf_token %}
+        <select name="color" required>
+            {% for color in combobox_colors %}
+            <option>{{ color }}</option>
+            {% endfor %}
+        </select>
+    </form>
+</div>
+
+
+{% endblock content %}

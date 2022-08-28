@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="order_block_1">
+    <img src="{% static 'img/moonpie_line_1.png' %}" width="100%">
+    <div class="order_block_1_head">Как заказать</div>
+</div>
+<div class="order_for_block_1">
+    <div class="order_block_1_main">
+        <div class="order_space">
+            <div class="order_col1">
+                <div class="order_col1_text">
+                    <div class="order_col_head1">Заказ по СПБ и ЛО (до 35км. от КАД)</div>
+                    <div class="order_col1_main_text">Оставляете заявку на заказ<br>Связываемся с Вами<br>Уточняем все необходимые детали<br>Орентируем по актуальным срокам производства<br>Процесс пошива<br>Отправка фото готовой работы<br>Согласовывание доставки<br>Примерка (15 мин.)<br>Оплата (карта/наличные)</div>
+                </div>
+            </div>
+            <div class="order_col2">
+                 <div class="order_col1_text">
+                     <div class="order_col_head2">Заказ по РФ</div>
+                     <div class="order_col2_main_text">Оставляете заявку на заказ<br>Связываемся с Вами<br>Уточняем все необходимые детали<br>Орентируем по актуальным срокам производства<br>Процесс пошива<br>Отправка фото готовой работы<br>Согласовывание доставки (СДЕК или др. службы доставки)<br>Отправка фото накладной<br>Примерка (15 мин.)<br>Оплата (карта/наличные)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="order_block_2">
+    <img src="{% static 'img/moonpie_line_1.png' %}" width="100%">
+    <div class="order_block_2_text">Выбор размера</div>
+</div>
+<div class="order_block_2_for_text">
+    <div class="order_block_2_main_text">
+        <p>Для того, чтобы определиться с нужным размером просим Вас ознакомиться с нашей размерной таблицей. Если в таблице нужного размера нет – при оформлении заказа просим указать Ваши параметры (обхват груди, талии и бедер + рост).</p>
+        <p>Любое изделие MOONPIE можно заказать в понравившемся цвете из предложенной палитры цветов.</p>
+    </div>
+</div>
+<div class="order_for_size">
+    <img class="order_size" src="{% static 'img/size_table.png' %}">
+</div>
+
+{% endblock content %}

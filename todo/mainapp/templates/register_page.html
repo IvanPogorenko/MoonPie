@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Register here!</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+      <h2 class="inactive underlineHover"><a href="{% url 'login' %}">Войти</a> </h2>
+      <h2 class="active">Зарегистрироваться</h2>
+
+    <!-- Icon -->
+{#    <div class="fadeIn first">#}
+{#      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />#}
+{#    </div>#}
+
+    <!-- Login Form -->
+    <form action="#" method="post">
+        {% csrf_token %}
+        {% for f in form %}
+            {{ f }}
+            <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <input type="submit" class="fadeIn fourth" value="Sign In" id="policyAgree">
+    </form>
+
+
+  </div>
+</div>
+</body>
+</html>
