@@ -96,6 +96,7 @@ class ProductDetailView(CartMixin, CategoryDetailMixin, DetailView):
         context['ct_model'] = self.model._meta.model_name
         context['cart'] = self.cart
         context['combobox_colors'] = CartProduct.COLORS
+        context['form'] = CartProductDescription(context['product'])
         # print(combobox_max_size)
         # for i in range(42, int(combobox_max_size)+1, 2):
         #     context['combobox'].add(i)

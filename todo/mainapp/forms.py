@@ -28,3 +28,21 @@ class OrderForm(forms.ModelForm):
         fields = (
             'first_name', 'last_name', 'phone', 'address', 'comment'
         )
+
+
+class CartProductDescription(forms.ModelForm):
+    def __init__(self, product: Product, *args, **kwargs):
+        SIZES = []
+        for i in range(42, product.max_size + 2, 2):
+            SIZES.append((i, str(i)))
+
+        super(CartProductDescription, self).__init__(*args, **kwargs)
+        self.fields['size'].widget = forms.Select(choices=tuple(SIZES))
+        self.fields['size'].queryset = range(42, product.max_size + 2, 2)
+
+
+    class Meta:
+        model = CartProduct
+        fields = ('color', 'size', 'height',
+                  'size_of_rud', 'size_of_waist',
+                  'size_of_hips')

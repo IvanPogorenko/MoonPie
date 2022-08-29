@@ -36,72 +36,49 @@
             <div class="about_product_title">
                 <p1>{{ product.title }}<br><p2>{{ product.price }}р.</p2></p1>
             </div>
-            <div class="about_product_choosing_blocks">
-                <div class="about_product_choosing_blocks_col1">
-                    <div class="about_product_choosing_block1">
-                        <div1>Цвет</div1>
-                        <div class="select">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <select name="color" required>
-                                    {% for color in combobox_colors %}
-                                    <option>{{ color }}</option>
-                                    {% endfor %}
-                                </select>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="about_product_choosing_block2">
-                        <div1>Размер</div1>
-                        <div class="select">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <select name="color" required>
-                                    {% for color in combobox_colors %}
-                                    <option>{{ color }}</option>
-                                    {% endfor %}
-                                </select>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="about_product_choosing_block2">
-                        <div1>Рост</div1>
-                        <div class="field">
-                            <form action="{% url 'cart' %}" method="POST">
-                                {% csrf_token %}
-                                <input type="number" name="height">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="about_product_choosing_blocks_col2">
-                    <div class="about_product_sizing_blocks">
-                        <div class="about_product_sizing_blocks_col1">
-                            <p>Обхват бёдер<br>Обхват груди<br>Обхват талии</p>
-                        </div>
-                        <div class="about_product_sizing_blocks_col2">
-                            <div class="field">
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <input type="number" name="height">
-                                </form>
+            <form action="{% url 'cart' %}" method="POST">
+                {% csrf_token %}
+                <div class="about_product_choosing_blocks">
+                    <div class="about_product_choosing_blocks_col1">
+                        <div class="about_product_choosing_block1">
+                            <div1>Цвет</div1>
+                            <div class="select">
+                                {{ form.color }}
                             </div>
-                            <div class="field">
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <input type="number" name="height">
-                                </form>
+                        </div>
+                        <div class="about_product_choosing_block2">
+                            <div1>Размер</div1>
+                            <div class="select">
+                               {{ form.size }}
                             </div>
+                        </div>
+                        <div class="about_product_choosing_block2">
+                            <div1>Рост</div1>
                             <div class="field">
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <input type="number" name="height">
-                                </form>
+                                {{ form.height }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about_product_choosing_blocks_col2">
+                        <div class="about_product_sizing_blocks">
+                            <div class="about_product_sizing_blocks_col1">
+                                <p>Обхват бёдер<br>Обхват груди<br>Обхват талии</p>
+                            </div>
+                            <div class="about_product_sizing_blocks_col2">
+                                <div class="field">
+                                    {{ form.size_of_hips }}
+                                </div>
+                                <div class="field">
+                                    {{ form.size_of_rud }}
+                                </div>
+                                <div class="field">
+                                    {{ form.size_of_waist }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <a class="about_product_but" href="{% url 'add_to_cart' ct_model=ct_model slug=product.slug %}">Добавить в корзину</a>
             <p class="about_product_descr">{{ product.description }}</p>
         </div>
